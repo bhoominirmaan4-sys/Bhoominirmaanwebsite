@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600;1,700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:#050418; }
+  ::selection{ background:#ff5a0a; color:#fff; }
+  .hi{ font-family:'Noto Sans Devanagari',Inter,sans-serif; }
+  /* LANGUAGE SWITCH — show only the active language, never both */
+  [data-lang="en"] [data-hi]{ display:none !important; }
+  [data-lang="hi"] [data-en]{ display:none !important; }
+  @keyframes floatpulse{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-6px);} }
+  input::placeholder, textarea::placeholder{ color:#6f6c8f; }
+</style>
+</helmet>
+<div ref="{{ rootRef }}" data-lang="en" style="font-family:Inter,sans-serif;background:#07051f;color:#f8f6f2;overflow-x:hidden;position:relative">
+
+  <!-- ===================== NAV ===================== -->
+  <header style="position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(7,5,31,0.82);border-bottom:1px solid rgba(255,255,255,0.06)">
+    <div style="max-width:1280px;margin:0 auto;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+      <a href="#top" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:#f8f6f2">
+        <span style="width:34px;height:34px;background:#ff5a0a;display:flex;align-items:center;justify-content:center;clip-path:polygon(0 0,100% 0,100% 72%,72% 100%,0 100%);font-weight:800;font-size:18px;color:#07051f">B</span>
+        <span style="font-weight:700;font-size:19px;letter-spacing:-0.02em">Bhoomi<span style="color:#ff5a0a">Nirmaan</span></span>
+      </a>
+      <nav style="display:flex;align-items:center;gap:30px" data-nav>
+        <a href="#projects" style="text-decoration:none;color:#c9c6e4;font-size:14px;font-weight:500"><span data-en>Projects</span><span data-hi class="hi">प्रोजेक्ट्स</span></a>
+        <a href="#about" style="text-decoration:none;color:#c9c6e4;font-size:14px;font-weight:500"><span data-en>About</span><span data-hi class="hi">हमारे बारे में</span></a>
+        <a href="#services" style="text-decoration:none;color:#c9c6e4;font-size:14px;font-weight:500"><span data-en>Services</span><span data-hi class="hi">सेवाएं</span></a>
+        <a href="#process" style="text-decoration:none;color:#c9c6e4;font-size:14px;font-weight:500"><span data-en>Process</span><span data-hi class="hi">प्रक्रिया</span></a>
+        <a href="#contact" style="text-decoration:none;color:#c9c6e4;font-size:14px;font-weight:500"><span data-en>Contact</span><span data-hi class="hi">संपर्क</span></a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:14px">
+        <div style="display:flex;border:1px solid rgba(255,255,255,0.16);border-radius:999px;overflow:hidden;font-size:13px;font-weight:600">
+          <button onClick="{{ setEN }}" style="{{ enPillStyle }}">EN</button>
+          <button onClick="{{ setHI }}" class="hi" style="{{ hiPillStyle }}">हिंदी</button>
+        </div>
+        <a href="{{ waLink }}" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#ff5a0a;color:#07051f;text-decoration:none;font-weight:700;font-size:14px;padding:10px 18px;border-radius:999px">WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="top" style="position:relative;max-width:1280px;margin:0 auto;padding:70px 32px 40px">
+    <div style="display:grid;grid-template-columns:1.15fr 0.85fr;gap:48px;align-items:center" data-hero>
+      <div data-reveal style="opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease">
+        <div style="display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,90,10,0.4);border-radius:999px;padding:7px 15px;margin-bottom:26px">
+          <span style="width:7px;height:7px;border-radius:50%;background:#ff5a0a"></span>
+          <span data-en style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#c9c6e4">Gorakhpur • Uttar Pradesh</span>
+          <span data-hi class="hi" style="font-size:12px;letter-spacing:0.06em;color:#c9c6e4">गोरखपुर • उत्तर प्रदेश</span>
+        </div>
+        <h1 style="margin:0;letter-spacing:-0.03em;font-weight:700">
+          <span data-en style="display:block;font-size:clamp(38px,5.2vw,68px);line-height:1.02">Architecture That <span style="font-style:italic;color:#ff5a0a">Builds</span> Gorakhpur's Future</span>
+          <span data-hi class="hi" style="display:block;font-size:clamp(30px,4.2vw,54px);line-height:1.12">गोरखपुर के <span style="font-style:italic;color:#ff5a0a">सपनों</span> को आकार देने वाली आर्किटेक्चर</span>
+        </h1>
+        <p data-en style="margin:26px 0 0;max-width:520px;font-size:17px;line-height:1.6;color:#b6b3d4">From vastu-friendly homes to modern elevations and functional interiors, BhoomiNirmaan designs spaces that feel beautiful, practical, and built for real Indian families.</p>
+        <p data-hi class="hi" style="margin:26px 0 0;max-width:540px;font-size:17px;line-height:1.75;color:#b6b3d4">घर, डुप्लेक्स, दुकान और इंटीरियर — BhoomiNirmaan आपके सपनों को प्लान, डिज़ाइन और निर्माण योग्य रूप देता है। सुंदर, व्यावहारिक और भारतीय परिवारों के लिए बनाया गया।</p>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:34px">
+          <a href="{{ waLink }}" target="_blank" style="display:inline-flex;align-items:center;gap:9px;background:#ff5a0a;color:#07051f;text-decoration:none;font-weight:700;font-size:15px;padding:15px 24px;border-radius:10px">
+            <span style="width:8px;height:8px;border-radius:50%;background:#07051f"></span><span data-en>WhatsApp Consultation</span><span data-hi class="hi">व्हाट्सएप पर सलाह</span></a>
+          <a href="#contact" style="display:inline-flex;align-items:center;gap:9px;background:transparent;color:#f8f6f2;text-decoration:none;font-weight:600;font-size:15px;padding:15px 24px;border-radius:10px;border:1px solid rgba(255,255,255,0.2)"><span data-en>Book a Site Visit</span><span data-hi class="hi">साइट विज़िट बुक करें</span></a>
+          <a href="#projects" style="display:inline-flex;align-items:center;gap:9px;color:#c9c6e4;text-decoration:none;font-weight:600;font-size:15px;padding:15px 6px"><span data-en>View Projects</span><span data-hi class="hi">प्रोजेक्ट्स देखें</span> <span style="color:#ff5a0a">→</span></a>
+        </div>
+      </div>
+
+      <!-- architect in orange geometric block -->
+      <div data-reveal style="opacity:0;transform:translateY(24px);transition:opacity .8s ease .15s,transform .8s ease .15s;position:relative;align-self:stretch;min-height:480px">
+        <div style="position:absolute;top:26px;right:0;width:86%;height:calc(100% - 26px);background:#ff5a0a;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%,0 20%)"></div>
+        <div style="position:absolute;top:0;right:8%;width:74%;height:100%;overflow:hidden;clip-path:polygon(16% 0,100% 0,100% 88%,84% 100%,0 100%,0 12%);background:#07051f">
+          <img src="assets/hero-architect.png" alt="Founder, BhoomiNirmaan" style="width:100%;height:100%;object-fit:cover;object-position:50% 30%;filter:contrast(1.02) saturate(0.96)">
+        </div>
+        <div style="position:absolute;left:-6px;bottom:26px;background:#07051f;border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:14px 18px;box-shadow:0 20px 50px rgba(0,0,0,0.5)">
+          <div data-en style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#7d7aa0">Principal Architect</div>
+          <div data-hi class="hi" style="font-size:12px;letter-spacing:0.06em;color:#7d7aa0">प्रधान आर्किटेक्ट</div>
+          <div style="font-weight:700;font-size:16px;margin-top:3px">BhoomiNirmaan Studio</div>
+        </div>
+        <div style="position:absolute;top:52px;left:12px;display:flex;align-items:center">
+          <span style="width:38px;height:38px;border-radius:50%;background:#2a2550;border:2px solid #07051f"></span>
+          <span style="width:38px;height:38px;border-radius:50%;background:#3a3468;border:2px solid #07051f;margin-left:-12px"></span>
+          <span style="width:38px;height:38px;border-radius:50%;background:#ff5a0a;border:2px solid #07051f;margin-left:-12px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#07051f">+</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- hero stats -->
+    <div data-reveal style="opacity:0;transform:translateY(24px);transition:opacity .7s ease .2s,transform .7s ease .2s;margin-top:52px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.08);border-radius:16px;overflow:hidden">
+      <div style="background:#07051f;padding:26px 24px"><div style="font-size:34px;font-weight:800;letter-spacing:-0.02em">120<span style="color:#ff5a0a">+</span></div><div style="font-size:13px;color:#9a97b8;margin-top:6px"><span data-en>Design Consultations</span><span data-hi class="hi">डिज़ाइन परामर्श</span></div></div>
+      <div style="background:#07051f;padding:26px 24px"><div style="font-size:34px;font-weight:800;letter-spacing:-0.02em">45<span style="color:#ff5a0a">+</span></div><div style="font-size:13px;color:#9a97b8;margin-top:6px"><span data-en>Homes Planned</span><span data-hi class="hi">घरों की योजना</span></div></div>
+      <div style="background:#07051f;padding:26px 24px"><div style="font-size:34px;font-weight:800;letter-spacing:-0.02em">10<span style="color:#ff5a0a">+</span></div><div style="font-size:13px;color:#9a97b8;margin-top:6px"><span data-en>Years Experience</span><span data-hi class="hi">साल का अनुभव</span></div></div>
+      <div style="background:#07051f;padding:26px 24px"><div data-en style="font-size:20px;font-weight:700;letter-spacing:-0.01em;line-height:1.2">Gorakhpur &amp;<br>Purvanchal Focus</div><div data-hi class="hi" style="font-size:19px;font-weight:700;line-height:1.3">गोरखपुर एवं<br>पूर्वांचल केंद्रित</div></div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about" style="background:#050418;padding:96px 0">
+    <div style="max-width:1080px;margin:0 auto;padding:0 32px;text-align:center;opacity:0;transition:opacity .7s ease" data-reveal>
+      <div style="font-size:12px;letter-spacing:0.28em;text-transform:uppercase;color:#7d7aa0;margin-bottom:26px"><span data-en>Who We Are</span><span data-hi class="hi">हमारे बारे में</span></div>
+      <h2 data-en style="margin:0;font-size:clamp(26px,3.6vw,44px);line-height:1.28;font-weight:600;letter-spacing:-0.02em">Founded with a passion for thoughtful design, BhoomiNirmaan creates homes and spaces <span style="font-style:italic;color:#ff5a0a">rooted in Gorakhpur's lifestyle.</span></h2>
+      <h2 data-hi class="hi" style="margin:0;font-size:clamp(24px,3.2vw,40px);line-height:1.4;font-weight:600;letter-spacing:-0.01em">सोच-समझकर की गई डिज़ाइन के जुनून के साथ स्थापित, BhoomiNirmaan <span style="font-style:italic;color:#ff5a0a">गोरखपुर की जीवनशैली</span> से जुड़े घर और स्थान बनाता है।</h2>
+      <p data-en style="margin:22px auto 0;max-width:720px;font-size:17px;line-height:1.7;color:#9a97b8">Rooted in local needs, family comfort and modern design — architectural solutions made for how Purvanchal actually lives.</p>
+      <p data-hi class="hi" style="margin:22px auto 0;max-width:720px;font-size:17px;line-height:1.8;color:#9a97b8">स्थानीय जरूरतों, परिवार की सुविधा और आधुनिक डिज़ाइन को ध्यान में रखकर बनाए गए आर्किटेक्चरल समाधान।</p>
+    </div>
+  </section>
+
+  <!-- ===================== FEATURED PROJECTS ===================== -->
+  <section id="projects" style="max-width:1280px;margin:0 auto;padding:96px 32px">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:44px;opacity:0;transition:opacity .7s ease" data-reveal>
+      <div>
+        <div style="font-size:12px;letter-spacing:0.26em;text-transform:uppercase;color:#7d7aa0;margin-bottom:16px"><span data-en>Featured Projects</span><span data-hi class="hi">चुनिंदा प्रोजेक्ट्स</span></div>
+        <h2 style="margin:0;font-size:clamp(34px,4.4vw,56px);font-weight:700;letter-spacing:-0.03em;line-height:1.02">45<span style="color:#ff5a0a">+</span><br><span data-en>Homes Planned</span><span data-hi class="hi">घरों की योजना</span></h2>
+      </div>
+      <p style="max-width:340px;font-size:15px;line-height:1.6;color:#9a97b8;margin:0"><span data-en>A selection of residences, elevations and commercial spaces designed across Gorakhpur and Purvanchal.</span><span data-hi class="hi">गोरखपुर और पूर्वांचल में डिज़ाइन किए गए घरों, एलिवेशन और कमर्शियल स्थानों का चयन।</span></p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px" data-projects>
+      <div data-card data-reveal style="opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);background:#0d0a2a;cursor:pointer">
+        <div style="height:300px"><img src="assets/project-duplex.jpg" alt="Modern Duplex Residence" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(5,4,24,0.92) 0%,rgba(5,4,24,0.1) 55%)"></div>
+        <div style="position:absolute;left:22px;bottom:22px;right:22px;display:flex;justify-content:space-between;align-items:flex-end">
+          <div>
+            <div style="font-size:19px;font-weight:700;letter-spacing:-0.01em"><span data-en>Modern Duplex Residence</span><span data-hi class="hi">आधुनिक डुप्लेक्स रेज़िडेंस</span></div>
+            <div style="font-size:13px;color:#b6b3d4;margin-top:4px"><span data-en>Gorakhpur · 2026</span><span data-hi class="hi">गोरखपुर · 2026</span></div>
+          </div>
+          <span data-arrow style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:18px;transition:background .3s,transform .3s">↗</span>
+        </div>
+      </div>
+
+      <div data-card data-reveal style="opacity:0;transform:translateY(24px);transition:opacity .6s ease .05s,transform .6s ease .05s;position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);background:#0d0a2a;cursor:pointer">
+        <div style="height:300px"><img src="assets/project-vastu.jpg" alt="Vastu-Friendly Family Home" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(5,4,24,0.92) 0%,rgba(5,4,24,0.1) 55%)"></div>
+        <div style="position:absolute;left:22px;bottom:22px;right:22px;display:flex;justify-content:space-between;align-items:flex-end">
+          <div>
+            <div style="font-size:19px;font-weight:700;letter-spacing:-0.01em"><span data-en>Vastu-Friendly Family Home</span><span data-hi class="hi">वास्तु-अनुकूल पारिवारिक घर</span></div>
+            <div style="font-size:13px;color:#b6b3d4;margin-top:4px"><span data-en>Rapti Nagar · 2026</span><span data-hi class="hi">रप्ती नगर · 2026</span></div>
+          </div>
+          <span data-arrow style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:18px;transition:background .3s,transform .3s">↗</span>
+        </div>
+      </div>
+
+      <div data-card data-reveal style="opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);background:#0d0a2a;cursor:pointer">
+        <div style="height:300px;background-image:repeating-linear-gradient(135deg,#1a1640 0 14px,#151134 14px 28px);display:flex;align-items:center;justify-content:center">
+          <span style="font-family:ui-monospace,monospace;font-size:12px;color:#5b5788;letter-spacing:0.05em">// showroom facade shot</span>
+        </div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(5,4,24,0.92) 0%,rgba(5,4,24,0.1) 55%)"></div>
+        <div style="position:absolute;left:22px;bottom:22px;right:22px;display:flex;justify-content:space-between;align-items:flex-end">
+          <div>
+            <div style="font-size:19px;font-weight:700;letter-spacing:-0.01em"><span data-en>Commercial Showroom Design</span><span data-hi class="hi">कमर्शियल शोरूम डिज़ाइन</span></div>
+            <div style="font-size:13px;color:#b6b3d4;margin-top:4px"><span data-en>Medical Road · 2026</span><span data-hi class="hi">मेडिकल रोड · 2026</span></div>
+          </div>
+          <span data-arrow style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:18px;transition:background .3s,transform .3s">↗</span>
+        </div>
+      </div>
+
+      <div data-card data-reveal style="opacity:0;transform:translateY(24px);transition:opacity .6s ease .05s,transform .6s ease .05s;position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);background:#0d0a2a;cursor:pointer">
+        <div style="height:300px;background-image:repeating-linear-gradient(135deg,#1a1640 0 14px,#151134 14px 28px);display:flex;align-items:center;justify-content:center">
+          <span style="font-family:ui-monospace,monospace;font-size:12px;color:#5b5788;letter-spacing:0.05em">// villa elevation shot</span>
+        </div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(5,4,24,0.92) 0%,rgba(5,4,24,0.1) 55%)"></div>
+        <div style="position:absolute;left:22px;bottom:22px;right:22px;display:flex;justify-content:space-between;align-items:flex-end">
+          <div>
+            <div style="font-size:19px;font-weight:700;letter-spacing:-0.01em"><span data-en>Contemporary Villa Elevation</span><span data-hi class="hi">समकालीन विला एलिवेशन</span></div>
+            <div style="font-size:13px;color:#b6b3d4;margin-top:4px"><span data-en>Purvanchal · 2026</span><span data-hi class="hi">पूर्वांचल · 2026</span></div>
+          </div>
+          <span data-arrow style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:18px;transition:background .3s,transform .3s">↗</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SERVICES ===================== -->
+  <section id="services" style="background:#050418;padding:96px 0">
+    <div style="max-width:1280px;margin:0 auto;padding:0 32px">
+      <div style="margin-bottom:44px;opacity:0;transition:opacity .7s ease" data-reveal>
+        <div style="font-size:12px;letter-spacing:0.26em;text-transform:uppercase;color:#7d7aa0;margin-bottom:16px"><span data-en>Services</span><span data-hi class="hi">सेवाएं</span></div>
+        <h2 style="margin:0;font-size:clamp(30px,3.8vw,46px);font-weight:700;letter-spacing:-0.02em"><span data-en>What we <span style="font-style:italic;color:#ff5a0a">design</span> for you</span><span data-hi class="hi">हम आपके लिए क्या <span style="font-style:italic;color:#ff5a0a">डिज़ाइन</span> करते हैं</span></h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px" data-services>
+        <div data-svc data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease,border-color .3s ease;padding:26px 22px;border:1px solid rgba(255,255,255,0.08);border-radius:14px;background:#0d0a2a"><div style="font-size:13px;font-family:ui-monospace,monospace;color:#ff5a0a">01</div><div style="font-weight:600;font-size:17px;margin-top:16px"><span data-en>Home Planning &amp; Layout</span><span data-hi class="hi">घर की योजना और लेआउट</span></div></div>
+        <div data-svc data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease,border-color .3s ease;padding:26px 22px;border:1px solid rgba(255,255,255,0.08);border-radius:14px;background:#0d0a2a"><div style="font-size:13px;font-family:ui-monospace,monospace;color:#ff5a0a">02</div><div style="font-weight:600;font-size:17px;margin-top:16px"><span data-en>Front Elevation Design</span><span data-hi class="hi">फ्रंट एलिवेशन डिज़ाइन</span></div></div>
+        <div data-svc data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease,border-color .3s ease;padding:26px 22px;border:1px solid rgba(255,255,255,0.08);border-radius:14px;background:#0d0a2a"><div style="font-size:13px;font-family:ui-monospace,monospace;color:#ff5a0a">03</div><div style="font-weight:600;font-size:17px;margin-top:16px"><span data-en>3D Visualization</span><span data-hi class="hi">3D विज़ुअलाइज़ेशन</span></div></div>
+        <div data-svc data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease,border-color .3s ease;padding:26px 22px;border:1px solid rgba(255,255,255,0.08);border-radius:14px;background:#0d0a2a"><div style="font-size:13px;font-family:ui-monospace,monospace;color:#ff5a0a">04</div><div style="font-weight:600;font-size:17px;margin-top:16px"><span data-en>Interior Design</span><span data-hi class="hi">इंटीरियर डिज़ाइन</span></div></div>
+        <div data-svc data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease,border-color .3s ease;padding:26px 22px;border:1px solid rgba(255,255,255,0.08);border-radius:14px;background:#0d0a2a"><div style="font-size:13px;font-family:ui-monospace,monospace;color:#ff5a0a">05</div><div style="font-weight:600;font-size:17px;margin-top:16px"><span data-en>Commercial Architecture</span><span data-hi class="hi">कमर्शियल आर्किटेक्चर</span></div></div>
+        <div data-svc data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease,border-color .3s ease;padding:26px 22px;border:1px solid rgba(255,255,255,0.08);border-radius:14px;background:#0d0a2a"><div style="font-size:13px;font-family:ui-monospace,monospace;color:#ff5a0a">06</div><div style="font-weight:600;font-size:17px;margin-top:16px"><span data-en>Renovation Planning</span><span data-hi class="hi">रेनोवेशन प्लानिंग</span></div></div>
+        <div data-svc data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease,border-color .3s ease;padding:26px 22px;border:1px solid rgba(255,255,255,0.08);border-radius:14px;background:#0d0a2a"><div style="font-size:13px;font-family:ui-monospace,monospace;color:#ff5a0a">07</div><div style="font-weight:600;font-size:17px;margin-top:16px"><span data-en>Vastu-Friendly Planning</span><span data-hi class="hi">वास्तु-अनुकूल योजना</span></div></div>
+        <div data-svc data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease,border-color .3s ease;padding:26px 22px;border:1px solid rgba(255,255,255,0.08);border-radius:14px;background:#0d0a2a"><div style="font-size:13px;font-family:ui-monospace,monospace;color:#ff5a0a">08</div><div style="font-weight:600;font-size:17px;margin-top:16px"><span data-en>Construction Consultation</span><span data-hi class="hi">निर्माण परामर्श</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROCESS ===================== -->
+  <section id="process" style="max-width:1180px;margin:0 auto;padding:96px 32px">
+    <div style="margin-bottom:40px;opacity:0;transition:opacity .7s ease" data-reveal>
+      <div style="font-size:12px;letter-spacing:0.26em;text-transform:uppercase;color:#7d7aa0;margin-bottom:16px"><span data-en>Process</span><span data-hi class="hi">प्रक्रिया</span></div>
+      <h2 style="margin:0;font-size:clamp(30px,3.8vw,46px);font-weight:700;letter-spacing:-0.02em"><span data-en>From idea to <span style="font-style:italic;color:#ff5a0a">handover</span></span><span data-hi class="hi">विचार से लेकर <span style="font-style:italic;color:#ff5a0a">चाबी</span> तक</span></h2>
+    </div>
+    <div style="display:flex;flex-direction:column">
+      <div data-reveal style="opacity:0;transition:opacity .6s ease;display:flex;align-items:center;gap:24px;padding:26px 0;border-bottom:1px solid rgba(255,255,255,0.1)">
+        <span style="font-family:ui-monospace,monospace;color:#7d7aa0;font-size:15px;min-width:32px">01</span>
+        <span style="font-size:clamp(20px,2.6vw,30px);font-weight:600;flex:1"><span data-en>Initial Consultation</span><span data-hi class="hi">प्रारंभिक परामर्श</span></span>
+        <span style="width:50px;height:50px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:18px">↗</span>
+      </div>
+      <div data-reveal style="opacity:0;transition:opacity .6s ease;display:flex;align-items:center;gap:24px;padding:26px 0;border-bottom:1px solid rgba(255,255,255,0.1)">
+        <span style="font-family:ui-monospace,monospace;color:#7d7aa0;font-size:15px;min-width:32px">02</span>
+        <span style="font-size:clamp(20px,2.6vw,30px);font-weight:600;flex:1"><span data-en>Site Measurement</span><span data-hi class="hi">साइट माप</span></span>
+        <span style="width:50px;height:50px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:18px">↗</span>
+      </div>
+      <!-- highlighted step 03 -->
+      <div data-reveal style="opacity:0;transition:opacity .6s ease;position:relative;background:#ff5a0a;color:#07051f;border-radius:6px;margin:10px 0;padding:30px 28px;display:flex;align-items:center;gap:24px;clip-path:polygon(0 0,100% 0,100% 78%,96% 100%,0 100%)">
+        <span style="font-family:ui-monospace,monospace;font-size:15px;min-width:32px;opacity:0.7">03</span>
+        <div style="flex:1">
+          <div style="font-size:clamp(20px,2.6vw,30px);font-weight:700"><span data-en>Concept + 3D Design</span><span data-hi class="hi">कॉन्सेप्ट + 3D डिज़ाइन</span></div>
+          <div style="font-size:14px;margin-top:6px;max-width:460px;opacity:0.85"><span data-en>Floor plans, elevations and photoreal 3D views so you can see your home before construction begins.</span><span data-hi class="hi">फ्लोर प्लान, एलिवेशन और फोटोरियल 3D व्यू — निर्माण शुरू होने से पहले अपना घर देखें।</span></div>
+        </div>
+        <div style="width:150px;height:110px;flex-shrink:0;background-image:repeating-linear-gradient(135deg,rgba(7,5,31,0.85) 0 10px,rgba(7,5,31,0.7) 10px 20px);border-radius:8px;transform:rotate(-4deg);display:flex;align-items:center;justify-content:center;box-shadow:0 16px 40px rgba(0,0,0,0.35)">
+          <span style="font-family:ui-monospace,monospace;font-size:10px;color:#f8f6f2">// 3D render</span>
+        </div>
+        <span style="width:54px;height:54px;border-radius:50%;background:#07051f;color:#ff5a0a;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">→</span>
+      </div>
+      <div data-reveal style="opacity:0;transition:opacity .6s ease;display:flex;align-items:center;gap:24px;padding:26px 0;border-bottom:1px solid rgba(255,255,255,0.1)">
+        <span style="font-family:ui-monospace,monospace;color:#7d7aa0;font-size:15px;min-width:32px">04</span>
+        <span style="font-size:clamp(20px,2.6vw,30px);font-weight:600;flex:1"><span data-en>Final Drawings</span><span data-hi class="hi">फाइनल ड्रॉइंग</span></span>
+        <span style="width:50px;height:50px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:18px">↗</span>
+      </div>
+      <div data-reveal style="opacity:0;transition:opacity .6s ease;display:flex;align-items:center;gap:24px;padding:26px 0;border-bottom:1px solid rgba(255,255,255,0.1)">
+        <span style="font-family:ui-monospace,monospace;color:#7d7aa0;font-size:15px;min-width:32px">05</span>
+        <span style="font-size:clamp(20px,2.6vw,30px);font-weight:600;flex:1"><span data-en>Construction Guidance</span><span data-hi class="hi">निर्माण मार्गदर्शन</span></span>
+        <span style="width:50px;height:50px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:18px">↗</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LEAD FORM ===================== -->
+  <section id="contact" style="background:#050418;padding:96px 0">
+    <div style="max-width:1080px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start" data-lead>
+      <div style="opacity:0;transition:opacity .7s ease" data-reveal>
+        <div style="font-size:12px;letter-spacing:0.26em;text-transform:uppercase;color:#7d7aa0;margin-bottom:18px"><span data-en>Free Consultation</span><span data-hi class="hi">मुफ्त परामर्श</span></div>
+        <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:700;letter-spacing:-0.02em;line-height:1.05"><span data-en>Planning to build in <span style="color:#ff5a0a;font-style:italic">Gorakhpur?</span></span><span data-hi class="hi"><span style="color:#ff5a0a;font-style:italic">गोरखपुर</span> में बनाने की सोच रहे हैं?</span></h2>
+        <p style="font-size:15px;color:#b6b3d4;line-height:1.7;margin-top:22px;max-width:420px"><span data-en>Share a few details and we'll continue the conversation directly on WhatsApp — no lengthy forms, no wait.</span><span data-hi class="hi">कुछ जानकारी साझा करें और हम सीधे व्हाट्सएप पर बात जारी रखेंगे — कोई लंबा फॉर्म नहीं, कोई इंतज़ार नहीं।</span></p>
+        <a href="{{ waLink }}" target="_blank" style="display:inline-flex;align-items:center;gap:10px;margin-top:26px;color:#f8f6f2;text-decoration:none;font-weight:600;font-size:16px"><span style="width:40px;height:40px;border-radius:50%;background:#ff5a0a;color:#07051f;display:flex;align-items:center;justify-content:center;font-weight:800">↗</span>+91 99361 81912</a>
+      </div>
+
+      <form ref="{{ formRef }}" onSubmit="{{ submitForm }}" style="opacity:0;transition:opacity .7s ease;background:#0d0a2a;border:1px solid rgba(255,255,255,0.08);border-radius:18px;padding:30px;display:flex;flex-direction:column;gap:16px" data-reveal>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <label style="font-size:12px;color:#9a97b8;letter-spacing:0.04em"><span data-en>Name</span><span data-hi class="hi">नाम</span></label>
+          <input name="name" required placeholder="Your full name" style="background:#07051f;border:1px solid rgba(255,255,255,0.12);border-radius:9px;padding:13px 14px;color:#f8f6f2;font-size:15px;font-family:inherit;outline:none">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <label style="font-size:12px;color:#9a97b8;letter-spacing:0.04em"><span data-en>Phone number</span><span data-hi class="hi">फ़ोन नंबर</span></label>
+          <input name="phone" required type="tel" placeholder="+91 ..." style="background:#07051f;border:1px solid rgba(255,255,255,0.12);border-radius:9px;padding:13px 14px;color:#f8f6f2;font-size:15px;font-family:inherit;outline:none">
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <label style="font-size:12px;color:#9a97b8;letter-spacing:0.04em"><span data-en>Project type</span><span data-hi class="hi">प्रोजेक्ट का प्रकार</span></label>
+            <select name="type" style="background:#07051f;border:1px solid rgba(255,255,255,0.12);border-radius:9px;padding:13px 12px;color:#f8f6f2;font-size:15px;font-family:inherit;outline:none">
+              <option>New Home Construction</option>
+              <option>Duplex / Villa Design</option>
+              <option>House Elevation</option>
+              <option>Interior Design</option>
+              <option>Commercial Shop / Showroom</option>
+              <option>Renovation &amp; Space Planning</option>
+              <option>3D Visualization</option>
+              <option>Vastu-Friendly Planning</option>
+            </select>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <label style="font-size:12px;color:#9a97b8;letter-spacing:0.04em"><span data-en>Location</span><span data-hi class="hi">स्थान</span></label>
+            <input name="location" placeholder="Area in Gorakhpur" style="background:#07051f;border:1px solid rgba(255,255,255,0.12);border-radius:9px;padding:13px 14px;color:#f8f6f2;font-size:15px;font-family:inherit;outline:none">
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <label style="font-size:12px;color:#9a97b8;letter-spacing:0.04em"><span data-en>Message</span><span data-hi class="hi">संदेश</span></label>
+          <textarea name="message" rows="3" placeholder="Tell us about your plot, budget or idea..." style="background:#07051f;border:1px solid rgba(255,255,255,0.12);border-radius:9px;padding:13px 14px;color:#f8f6f2;font-size:15px;font-family:inherit;outline:none;resize:vertical"></textarea>
+        </div>
+        <button type="submit" style="margin-top:6px;background:#ff5a0a;color:#07051f;border:none;border-radius:10px;padding:15px;font-weight:700;font-size:15px;cursor:pointer;font-family:inherit"><span data-en>Get Free Consultation on WhatsApp →</span><span data-hi class="hi">व्हाट्सएप पर मुफ्त परामर्श पाएं →</span></button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer style="background:#07051f;border-top:1px solid rgba(255,255,255,0.08);padding:70px 0 40px">
+    <div style="max-width:1280px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1.4fr 1fr auto;gap:40px;align-items:start">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <span style="width:34px;height:34px;background:#ff5a0a;display:flex;align-items:center;justify-content:center;clip-path:polygon(0 0,100% 0,100% 72%,72% 100%,0 100%);font-weight:800;font-size:18px;color:#07051f">B</span>
+          <span style="font-weight:700;font-size:20px">BhoomiNirmaan</span>
+        </div>
+        <div style="font-size:14px;color:#9a97b8;letter-spacing:0.05em"><span data-en>Architecture · Interiors · Planning</span><span data-hi class="hi">आर्किटेक्चर · इंटीरियर · प्लानिंग</span></div>
+        <div style="font-size:14px;color:#7d7aa0;margin-top:8px"><span data-en>Gorakhpur, Uttar Pradesh</span><span data-hi class="hi">गोरखपुर, उत्तर प्रदेश</span></div>
+      </div>
+      <div>
+        <div style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:#7d7aa0;margin-bottom:14px"><span data-en>Get in touch</span><span data-hi class="hi">संपर्क करें</span></div>
+        <a href="{{ waLink }}" target="_blank" style="color:#f8f6f2;text-decoration:none;font-size:15px;font-weight:600;display:block">WhatsApp: +91 99361 81912</a>
+        <div style="display:flex;gap:20px;margin-top:16px;font-size:14px;color:#9a97b8">
+          <a href="#projects" style="color:#9a97b8;text-decoration:none"><span data-en>Projects</span><span data-hi class="hi">प्रोजेक्ट्स</span></a>
+          <a href="#services" style="color:#9a97b8;text-decoration:none"><span data-en>Services</span><span data-hi class="hi">सेवाएं</span></a>
+          <a href="#process" style="color:#9a97b8;text-decoration:none"><span data-en>Process</span><span data-hi class="hi">प्रक्रिया</span></a>
+        </div>
+      </div>
+      <a href="{{ waLink }}" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:#ff5a0a;color:#07051f;text-decoration:none;font-weight:700;font-size:15px;padding:15px 24px;border-radius:10px;white-space:nowrap"><span data-en>Start Your Project →</span><span data-hi class="hi">अपना प्रोजेक्ट शुरू करें →</span></a>
+    </div>
+    <div style="max-width:1280px;margin:44px auto 0;padding:24px 32px 0;border-top:1px solid rgba(255,255,255,0.06);font-size:13px;color:#5b5788;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
+      <span>© 2026 BhoomiNirmaan.</span>
+      <span><span data-en>Designed for Gorakhpur &amp; Purvanchal.</span><span data-hi class="hi">गोरखपुर एवं पूर्वांचल के लिए डिज़ाइन किया गया।</span></span>
+    </div>
+  </footer>
+
+  <!-- floating whatsapp -->
+  <a href="{{ waLink }}" target="_blank" title="Chat on WhatsApp" style="position:fixed;right:24px;bottom:24px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(37,211,102,0.4);animation:floatpulse 2.6s ease-in-out infinite;text-decoration:none">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.26-.1-.45-.15-.64.15-.19.29-.74.94-.9 1.13-.17.19-.33.21-.62.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.29-.02-.45.13-.6.13-.13.29-.33.44-.5.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.08-.15-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49h-.55c-.19 0-.5.07-.76.36-.26.29-1 .98-1 2.38s1.02 2.76 1.17 2.95c.14.19 2.01 3.07 4.87 4.3.68.29 1.21.47 1.62.6.68.22 1.3.19 1.79.11.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.19-.55-.34z M12 2C6.5 2 2 6.5 2 12c0 1.77.46 3.43 1.27 4.87L2 22l5.25-1.38A9.96 9.96 0 0 0 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+  </a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { hi: false };
+
+  renderVals() {
+    const wa = "https://wa.me/919936181912?text=Hello%20BhoomiNirmaan%2C%20I%20want%20to%20discuss%20an%20architecture%20project";
+    const active = "background:#ff5a0a;color:#07051f;border:none;padding:7px 14px;cursor:pointer";
+    const idle = "background:transparent;color:#c9c6e4;border:none;padding:7px 14px;cursor:pointer";
+    return {
+      waLink: wa,
+      rootRef: (el) => { this.root = el; },
+      formRef: (el) => { this.form = el; },
+      enPillStyle: this.state.hi ? idle : active,
+      hiPillStyle: this.state.hi ? active : idle,
+      setEN: () => this.setLang(false),
+      setHI: () => this.setLang(true),
+      submitForm: (e) => this.onSubmit(e),
+    };
+  }
+
+  setLang(hi) {
+    this.setState({ hi });
+    const root = this.root;
+    if (!root) return;
+    root.setAttribute("data-lang", hi ? "hi" : "en");
+    // swap placeholders (attributes can't hold two languages at once)
+    const ph = hi
+      ? { name: "आपका पूरा नाम", phone: "+91 ...", location: "गोरखपुर में क्षेत्र", message: "अपने प्लॉट, बजट या विचार के बारे में बताएं..." }
+      : { name: "Your full name", phone: "+91 ...", location: "Area in Gorakhpur", message: "Tell us about your plot, budget or idea..." };
+    Object.keys(ph).forEach((k) => {
+      const el = root.querySelector('[name="' + k + '"]');
+      if (el) el.setAttribute("placeholder", ph[k]);
+    });
+    // rebuild the select options in the chosen language, keeping the selection
+    const en = ["New Home Construction", "Duplex / Villa Design", "House Elevation", "Interior Design", "Commercial Shop / Showroom", "Renovation & Space Planning", "3D Visualization", "Vastu-Friendly Planning"];
+    const hn = ["नया घर निर्माण", "डुप्लेक्स / विला डिज़ाइन", "हाउस एलिवेशन", "इंटीरियर डिज़ाइन", "कमर्शियल शॉप / शोरूम", "रेनोवेशन एवं स्पेस प्लानिंग", "3D विज़ुअलाइज़ेशन", "वास्तु-अनुकूल योजना"];
+    const sel = root.querySelector('select[name="type"]');
+    if (sel) {
+      const idx = Math.max(0, sel.selectedIndex);
+      const list = hi ? hn : en;
+      sel.innerHTML = "";
+      list.forEach((t, i) => {
+        const o = document.createElement("option");
+        o.textContent = t;
+        o.value = en[i]; // keep English value for the WhatsApp message
+        sel.appendChild(o);
+      });
+      sel.selectedIndex = idx;
+    }
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    const f = this.form;
+    const g = (n) => (f && f.querySelector('[name="' + n + '"]') ? f.querySelector('[name="' + n + '"]').value : "");
+    const msg =
+      "Hello BhoomiNirmaan, I'd like a free consultation.\n\n" +
+      "Name: " + (g("name") || "-") + "\n" +
+      "Phone: " + (g("phone") || "-") + "\n" +
+      "Project type: " + (g("type") || "-") + "\n" +
+      "Location: " + (g("location") || "-") + "\n" +
+      "Message: " + (g("message") || "-");
+    const url = "https://wa.me/919936181912?text=" + encodeURIComponent(msg);
+    window.open(url, "_blank");
+  }
+
+  componentDidMount() {
+    const scope = this.root || document;
+    const els = scope.querySelectorAll("[data-reveal]");
+    const show = (el) => { el.style.opacity = "1"; el.style.transform = "none"; };
+    const inView = (el) => {
+      const r = el.getBoundingClientRect();
+      return r.top < (window.innerHeight || 800) - 40 && r.bottom > 0;
+    };
+    let io = null;
+    if ("IntersectionObserver" in window) {
+      io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) { show(en.target); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.08, rootMargin: "0px 0px -30px 0px" });
+    }
+    els.forEach((el) => {
+      if (inView(el)) show(el);
+      else if (io) io.observe(el);
+      else show(el);
+    });
+    setTimeout(() => els.forEach((el) => { if (getComputedStyle(el).opacity === "0") show(el); }), 1400);
+
+    const cards = scope.querySelectorAll("[data-card]");
+    cards.forEach((c) => {
+      const arrow = c.querySelector("[data-arrow]");
+      c.addEventListener("mouseenter", () => {
+        c.style.transform = "translateY(-6px)";
+        c.style.borderColor = "rgba(255,90,10,0.5)";
+        if (arrow) { arrow.style.background = "#ff5a0a"; arrow.style.transform = "rotate(45deg)"; arrow.style.color = "#07051f"; }
+      });
+      c.addEventListener("mouseleave", () => {
+        c.style.transform = "none";
+        c.style.borderColor = "rgba(255,255,255,0.08)";
+        if (arrow) { arrow.style.background = "rgba(255,255,255,0.1)"; arrow.style.transform = "none"; arrow.style.color = "#f8f6f2"; }
+      });
+    });
+    const svcs = scope.querySelectorAll("[data-svc]");
+    svcs.forEach((s) => {
+      s.addEventListener("mouseenter", () => { s.style.borderColor = "rgba(255,90,10,0.5)"; s.style.transform = "translateY(-4px)"; });
+      s.addEventListener("mouseleave", () => { s.style.borderColor = "rgba(255,255,255,0.08)"; s.style.transform = "none"; });
+    });
+  }
+}
+</script>
+</body>
+</html>
